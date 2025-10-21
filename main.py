@@ -7,7 +7,3 @@ app = FastAPI()
 async def roma():
     return [i for i in cur.execute('select * from films where id < 51')]
 #хуй
-
-
-for i in range(100000000):
-    print("9999321-938021938701274809247198047")
