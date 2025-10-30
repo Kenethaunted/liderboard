@@ -6,4 +6,3 @@ app = FastAPI()
 @app.get("/")
 async def roma():
     return [i for i in cur.execute('select * from films where id < 51')]
-#хуй
