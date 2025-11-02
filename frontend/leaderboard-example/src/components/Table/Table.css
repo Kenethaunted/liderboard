@@ -8,12 +8,10 @@
   text-align: center;
 }
 
-/* Заголовок */
 .app-title {
   font-family: "Sirius-Bold";
   src: url("ALS_Sirius_Bold_0.95.otf");
-  font-size: 36px;
-  margin-bottom: 30px;
+  font-size: 2rem;
   color: #0b5c2a;
 }
 

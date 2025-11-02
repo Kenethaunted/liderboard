@@ -5,3 +5,34 @@ body {
   padding: 0;
   color: #2c3e50;
 }
+
+.app-main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+.leaderboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .leaderboard-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 0 16px;
+  }
+}

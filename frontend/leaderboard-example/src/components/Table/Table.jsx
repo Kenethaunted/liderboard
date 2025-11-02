@@ -4,7 +4,6 @@ export function Table({ students, error }) {
   return (
     <div className="app-container">
       <title>Лидерборд</title>
-      <h1 className="app-title">Рейтинг лучших студентов</h1>
 
       {error && <p className="error">{error}</p>}
 
