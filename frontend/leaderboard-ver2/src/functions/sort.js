@@ -1,0 +1,1 @@
+export const SORT_FIELDS = { place: 'place', score: 'score', name: 'name', school: 'school' }
