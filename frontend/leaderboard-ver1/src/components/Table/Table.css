@@ -1,12 +1,14 @@
 .app-container {
-  min-height: 100vh;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* по вертикали */
-  align-items: center;     /* по горизонтали */
+  align-items: center; /* оставляем только горизонтальное центрирование */
   background-color: white;
   text-align: center;
+  flex-grow: 1;
+  justify-content: flex-start; /* <-- ключевое изменение */
 }
+
 
 .app-title {
   font-family: "Sirius-Bold";
@@ -85,4 +87,75 @@
 
 .film-table tr:hover:not(.gold-row):not(.silver-row):not(.bronze-row) {
   background-color: #e8f5e9;
+}
+
+/* --- Адаптивность таблицы --- */
+
+/* Контейнер со скроллом по горизонтали */
+@media (max-width: 1024px) {
+  .film-table {
+    width: 95%;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 0 8px;
+  }
+
+  .film-table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap; /* предотвращает ломку строк */
+    border-radius: 10px;
+  }
+
+  .film-table th,
+  .film-table td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  /* Делает шапку "прилипшей" для удобства прокрутки */
+  .film-table thead {
+    position: sticky;
+    top: 0;
+    background-color: #1a6b2d;
+    z-index: 1;
+  }
+}
+
+/* При очень маленькой ширине — карточки вместо таблицы */
+@media (max-width: 480px) {
+  .film-table {
+    display: none; /* Скрываем таблицу */
+  }
+
+  .mobile-table {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .mobile-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px 12px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    font-family: "Sirius";
+    text-align: left;
+  }
+
+  .mobile-card strong {
+    color: #1a6b2d;
+  }
+
+  .mobile-card p {
+    margin: 4px 0;
+    font-size: 14px;
+  }
 }

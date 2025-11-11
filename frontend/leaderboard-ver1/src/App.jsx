@@ -50,30 +50,40 @@ export default function App() {
   }, [students]);
 
   // Фильтрация
-  const filteredStudents = useMemo(() => {
-    const query = search.trim().toLowerCase();
+  const filteredAndRanked = useMemo(() => {
+  const query = search.trim().toLowerCase();
 
-    return students.filter((student) => {
-      if (schoolFilter && student.Школа !== schoolFilter) return false;
-      if (groupFilter && student.Группа !== groupFilter) return false;
-      const score = student["Счет баллов"];
-      if (score < minScore || score > maxScore) return false;
-      if (query) {
-        const matchesName = student.ФИО.toLowerCase().includes(query);
-        const matchesSchool = student.Школа.toLowerCase().includes(query);
-        const matchesGroup = student.Группа.toLowerCase().includes(query);
-        if (!matchesName && !matchesSchool && !matchesGroup) return false;
-      }
-      return true;
-    });
-  }, [students, search, schoolFilter, groupFilter, minScore, maxScore]);
+  // 1. Фильтрация
+  let result = students.filter((student) => {
+    if (schoolFilter && student.Школа !== schoolFilter) return false;
+    if (groupFilter && student.Группа !== groupFilter) return false;
+    const score = student["Счет баллов"];
+    if (score < minScore || score > maxScore) return false;
+    if (query) {
+      const matchesName = student.ФИО.toLowerCase().includes(query);
+      const matchesSchool = student.Школа.toLowerCase().includes(query);
+      const matchesGroup = student.Группа.toLowerCase().includes(query);
+      if (!matchesName && !matchesSchool && !matchesGroup) return false;
+    }
+    return true;
+  });
+
+  // 2. Сортировка по баллам (по убыванию)
+  result.sort((a, b) => b["Счет баллов"] - a["Счет баллов"]);
+
+  // 3. Добавляем динамическое Место
+  return result.map((student, index) => ({
+    ...student,
+    Место: index + 1,
+  }));
+}, [students, search, schoolFilter, groupFilter, minScore, maxScore]);
 
   const resetFilters = () => {
     setSearch("");
     setSchoolFilter("");
     setGroupFilter("");
     setMinScore(0);
-    setMaxScore(300);
+    setMaxScore(1000000);
   };
 
   return (
@@ -107,11 +117,11 @@ export default function App() {
             schools={schools}
             groups={groups}
             onReset={resetFilters}
-            visibleCount={filteredStudents.length}
+            visibleCount={filteredAndRanked.length}
           />
 
           {/* Таблица */}
-          <Table students={filteredStudents} error={error} />
+          <Table students={filteredAndRanked} error={error} className="mt-6" />
         </div>
       </div>
     </>

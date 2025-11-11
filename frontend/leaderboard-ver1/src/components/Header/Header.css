@@ -95,3 +95,44 @@ header .content
 
   white-space: nowrap;
 }
+
+/* --- Адаптивная шапка --- */
+@media (max-width: 768px) {
+  header {
+    height: auto;
+    margin: 0;
+    padding: 0.5em 0;
+  }
+
+  header .content {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5em;
+  }
+
+  #logo {
+    padding: 0.5em 1em;
+    height: auto;
+  }
+
+  #logo img {
+    height: 48px;
+    width: auto;
+  }
+
+  #user {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.5em 1em;
+  }
+
+  #user span {
+    font-size: 1.2em;
+  }
+
+  #user img {
+    height: 48px;
+    width: auto;
+  }
+}

@@ -7,6 +7,7 @@ export function Table({ students, error }) {
 
       {error && <p className="error">{error}</p>}
 
+      {/* Десктопная таблица */}
       <table className="film-table">
         <thead>
           <tr>
@@ -21,13 +22,9 @@ export function Table({ students, error }) {
           {students.length > 0 ? (
             students.map((student) => {
               let rowClass = "";
-              if (student.Место === 1) {
-                rowClass = "gold-row";
-              } else if (student.Место === 2) {
-                rowClass = "silver-row";
-              } else if (student.Место === 3) {
-                rowClass = "bronze-row";
-              }
+              if (student.Место === 1) rowClass = "gold-row";
+              else if (student.Место === 2) rowClass = "silver-row";
+              else if (student.Место === 3) rowClass = "bronze-row";
 
               return (
                 <tr key={student.Место} className={rowClass}>

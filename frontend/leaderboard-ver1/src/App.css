@@ -1,3 +1,7 @@
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: white;
@@ -17,6 +21,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  align-items: stretch;
 }
 
 
@@ -36,3 +41,6 @@ body {
     padding: 0 16px;
   }
 }
+
+
+

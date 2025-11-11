@@ -144,3 +144,38 @@
     justify-content: flex-end;
   }
 }
+
+@media (max-width: 480px) {
+  .filters-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filters-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .score-range {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .score-range label {
+    text-align: left;
+  }
+
+  .score-input {
+    width: 100%;
+  }
+
+  .reset-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .filters-summary {
+    justify-content: center;
+  }
+}
