@@ -23,7 +23,7 @@ export function Filters({
           type="text"
           value={search}
           onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="Поиск по ФИО, школе или группе"
+          placeholder="Поиск по ФИО"
           className="filter-input"
         />
 
