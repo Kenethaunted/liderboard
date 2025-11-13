@@ -27,7 +27,7 @@ export function Table({ students, error }) {
               else if (student.Место === 3) rowClass = "bronze-row";
 
               return (
-                <tr key={student.Место} className={rowClass}>
+                <tr key={student.ФИО} className={rowClass}>
                   <td>{student.Место}</td>
                   <td>{student.ФИО}</td>
                   <td>{student.Школа}</td>
