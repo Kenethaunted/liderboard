@@ -42,5 +42,83 @@ body {
   }
 }
 
+@media (max-width: 480px) {
+.app-main {
+padding: 12px;
+}
 
+.leaderboard-container {
+gap: 16px;
+}
+}
 
+/* Переключатель рейтингов */
+.rating-switcher {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 0 24px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 16px;
+}
+
+.rating-tab {
+  padding: 12px 24px;
+  background-color: #f8faf8;
+  border: 2px solid #c8e6c9;
+  border-radius: 8px;
+  font-family: "Sirius-Bold", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  color: #2e7d32;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  position: relative;
+}
+
+.rating-tab:hover {
+  background-color: #e8f5e9;
+  border-color: #a5d6a7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(46, 125, 50, 0.2);
+}
+
+.rating-tab.active {
+  background-color: #0E9344;
+  color: #ffffff;
+  border-color: #0E9344;
+  box-shadow: 0 4px 12px rgba(14, 147, 68, 0.3);
+}
+
+.rating-tab.active:hover {
+  background-color: #0b7a38;
+  border-color: #0b7a38;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .rating-switcher {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 16px;
+    padding-bottom: 12px;
+  }
+
+  .rating-tab {
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rating-switcher {
+    padding: 0 12px;
+    padding-bottom: 12px;
+  }
+
+  .rating-tab {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+}

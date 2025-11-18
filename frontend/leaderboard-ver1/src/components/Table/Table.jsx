@@ -1,6 +1,104 @@
 import "./Table.css";
 
-export function Table({ students, error }) {
+const RATING_TYPES = {
+  STUDENTS: "students",
+  TEAMS: "teams",
+  MENTORING: "mentoring",
+};
+
+export function Table({ data, ratingType, error }) {
+  const getTableHeaders = () => {
+    switch (ratingType) {
+      case RATING_TYPES.STUDENTS:
+        return (
+          <>
+            <th>Место</th>
+            <th>ФИО</th>
+            <th>Школа</th>
+            <th>Группа</th>
+            <th>Баллы</th>
+          </>
+        );
+      case RATING_TYPES.TEAMS:
+        return (
+          <>
+            <th>Место</th>
+            <th>Название команды</th>
+            <th>Баллы</th>
+          </>
+        );
+      case RATING_TYPES.MENTORING:
+        return (
+          <>
+            <th>Место</th>
+            <th>ФИО наставника</th>
+            <th>Баллы</th>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const getTableRow = (item, index) => {
+    let rowClass = "";
+    if (item.Место === 1) rowClass = "gold-row";
+    else if (item.Место === 2) rowClass = "silver-row";
+    else if (item.Место === 3) rowClass = "bronze-row";
+
+    switch (ratingType) {
+      case RATING_TYPES.STUDENTS:
+        return (
+          <tr key={item.ФИО || index} className={rowClass}>
+            <td>{item.Место}</td>
+            <td>{item.ФИО}</td>
+            <td>{item.Школа}</td>
+            <td>{item.Группа}</td>
+            <td>{item["Счет баллов"]}</td>
+          </tr>
+        );
+      case RATING_TYPES.TEAMS:
+        {
+          const score = item["Счет баллов"];
+          return (
+            <tr key={item["Название команды"] || index} className={rowClass}>
+              <td>{item.Место}</td>
+              <td>{item["Название команды"]}</td>
+              <td>{score}</td>
+            </tr>
+          );
+        }
+      case RATING_TYPES.MENTORING:
+        {
+          const score = item["Счет баллов"];
+          const formattedScore =
+            typeof score === "number" ? score.toFixed(2) : score;
+          return (
+            <tr key={item["ФИО наставника"] || index} className={rowClass}>
+              <td>{item.Место}</td>
+              <td>{item["ФИО наставника"]}</td>
+              <td>{formattedScore}</td>
+            </tr>
+          );
+        }
+      default:
+        return null;
+    }
+  };
+
+  const getColSpan = () => {
+    switch (ratingType) {
+      case RATING_TYPES.STUDENTS:
+        return 5;
+      case RATING_TYPES.TEAMS:
+        return 3;
+      case RATING_TYPES.MENTORING:
+        return 3;
+      default:
+        return 5;
+    }
+  };
+
   return (
     <div className="app-container">
       <title>Лидерборд</title>
@@ -10,35 +108,14 @@ export function Table({ students, error }) {
       {/* Десктопная таблица */}
       <table className="film-table">
         <thead>
-          <tr>
-            <th>Место</th>
-            <th>ФИО</th>
-            <th>Школа</th>
-            <th>Группа</th>
-            <th>Баллы</th>
-          </tr>
+          <tr>{getTableHeaders()}</tr>
         </thead>
         <tbody>
-          {students.length > 0 ? (
-            students.map((student) => {
-              let rowClass = "";
-              if (student.Место === 1) rowClass = "gold-row";
-              else if (student.Место === 2) rowClass = "silver-row";
-              else if (student.Место === 3) rowClass = "bronze-row";
-
-              return (
-                <tr key={student.ФИО} className={rowClass}>
-                  <td>{student.Место}</td>
-                  <td>{student.ФИО}</td>
-                  <td>{student.Школа}</td>
-                  <td>{student.Группа}</td>
-                  <td>{student["Счет баллов"]}</td>
-                </tr>
-              );
-            })
+          {data && data.length > 0 ? (
+            data.map((item, index) => getTableRow(item, index))
           ) : (
             <tr>
-              <td className="loading" colSpan="5">
+              <td className="loading" colSpan={getColSpan()}>
                 Загрузка данных...
               </td>
             </tr>

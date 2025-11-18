@@ -179,3 +179,31 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 480px) {
+.filters-container {
+padding: 12px;
+}
+
+.filters-controls {
+flex-direction: column;
+gap: 10px;
+}
+
+.filter-input,
+.filter-select,
+.score-input,
+.reset-button {
+width: 100%;
+}
+
+.filter-input {
+padding: 12px;
+font-size: 15px;
+}
+
+.reset-button {
+padding: 12px;
+font-size: 15px;
+}
+}
